@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>শারদোৎসব ২০২৬ | ষষ্ঠীর অপেক্ষায়</title>
+  <meta name="description" content="শারদোৎসব ২০২৬ কাউন্টডাউন, ঢাকের সুর এবং সেরা ২০ দুর্গাপূজা">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atma:wght@500;600;700&family=Galada&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cherry-dark: #4a000f;
+      --cherry: #72001c;
+      --gold: #f4c430;
+      --gold-bright: #ffe57f;
+      --text-gold: #fff3c4;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: radial-gradient(circle at top, #990026, var(--cherry) 55%, var(--cherry-dark));
+      color: #fff;
+      font-family: 'Atma', 'Hind Siliguri', cursive, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 90px;
+    }
+    header {
+      text-align: center;
+      padding: 20px 12px;
+      border-bottom: 2px dashed rgba(244, 196, 48, 0.4);
+      background: rgba(45, 0, 9, 0.5);
+    }
+    header h1 {
+      font-family: 'Galada', cursive;
+      font-size: 2.2rem;
+      color: var(--gold);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    header p {
+      color: var(--text-gold);
+      font-size: 1.1rem;
+      margin-top: 4px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 14px;
+    }
+    .photo-card {
+      background: rgba(0,0,0,0.35);
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      padding: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    }
+    .photo-card img {
+      width: 100%;
+      max-height: 360px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      background: #250009;
+    }
+    .photo-card .caption {
+      margin-top: 8px;
+      font-size: 1.15rem;
+      color: var(--gold-bright);
+    }
+    .timer-card {
+      background: linear-gradient(145deg, rgba(80, 0, 18, 0.85), rgba(30, 0, 8, 0.95));
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      padding: 16px 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    }
+    .timer-card h2 {
+      font-family: 'Galada', cursive;
+      font-size: 1.65rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .timer-card .subtitle {
+      color: var(--text-gold);
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .time-slot {
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(244, 196, 48, 0.5);
+      border-radius: 8px;
+      padding: 8px 2px;
+    }
+    .time-slot .number {
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #fff;
+      display: block;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+    .time-slot .label {
+      font-size: 0.95rem;
+      color: var(--gold);
+    }
+    .pandal-section, .comments-section {
+      background: rgba(30, 0, 8, 0.85);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+    .pandal-section h2, .comments-section h2 {
+      text-align: center;
+      font-family: 'Galada', cursive;
+      color: var(--gold);
+      font-size: 1.65rem;
+      margin-bottom: 10px;
+    }
+    .search-box {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--gold);
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-family: inherit;
+      margin-bottom: 10px;
+      outline: none;
+    }
+    .pandal-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+    .pandal-item {
+      background: rgba(90, 0, 22, 0.65);
+      border: 1px solid rgba(244, 196, 48, 0.35);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+    .pandal-title {
+      font-size: 1.15rem;
+      color: var(--gold-bright);
+      font-weight: 700;
+    }
+    .pandal-desc {
+      font-size: 0.92rem;
+      color: #fce8e8;
+      margin-top: 2px;
+    }
+    .pandal-loc {
+      font-size: 0.82rem;
+      color: #ffb4c3;
+      margin-top: 2px;
+    }
+    .comment-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .comment-inputs input, .comment-inputs textarea {
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 8px;
+      color: #fff;
+      font-family: inherit;
+      outline: none;
+    }
+    .comment-btn {
+      background: var(--gold);
+      color: #3b000b;
+      font-weight: 700;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      align-self: flex-end;
+      font-family: inherit;
+    }
+    .comments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .single-comment {
+      background: rgba(60, 0, 15, 0.7);
+      border-left: 3px solid var(--gold);
+      border-radius: 6px;
+      padding: 8px;
+    }
+    .single-comment.pinned {
+      border: 2px solid var(--gold);
+      background: rgba(90, 10, 25, 0.85);
+    }
+    .comment-head {
+      font-weight: 700;
+      color: var(--gold-bright);
+      margin-bottom: 2px;
+    }
+    .comment-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+      font-size: 0.85rem;
+      color: #fff3c4;
+    }
+    .action-btn {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .floating-bar {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 99;
+      background: rgba(20, 0, 5, 0.85);
+      padding: 8px 14px;
+      border-radius: 30px;
+      border: 1px solid var(--gold);
+    }
+    .float-btn {
+      background: var(--gold);
+      color: #3b000b;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+    }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: var(--cherry-dark);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      max-width: 420px;
+      width: 100%;
+      padding: 12px;
+      text-align: center;
+      position: relative;
+    }
+    .modal-content img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .close-modal {
+      position: absolute;
+      top: 4px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: var(--gold);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>শারদোৎসব ২০২৬</h1>
+    <p>শ্রীশ্রী দুর্গোৎসব ও আগমনী মহোৎসব</p>
+  </header>
+
+  <div class="container">
+    <!-- Image 1 -->
+    <div class="photo-card">
+      <img src="bln.jpg" alt="মা দুর্গা" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1601614217743-447545e8f465?w=800&auto=format&fit=crop';">
+      <div class="caption">কাশফুলের মেলা আর শিউলি ঝরা ভোর — মা আসছেন ঘরে!</div>
+    </div>
+
+    <!-- Timer 1: Sasthi -->
+    <div class="timer-card">
+      <h2>ষষ্ঠীর অপেক্ষায়...</h2>
+      <div class="subtitle">টার্গেট: ১৬ই অক্টোবর ২০২৬, রাত ১২:০০ AM (০০:০০:০০)</div>
+      <div class="countdown-grid">
+        <div class="time-slot"><span class="number" id="sDays">০০</span><span class="label">দিন</span></div>
+        <div class="time-slot"><span class="number" id="sHours">০০</span><span class="label">ঘণ্টা</span></div>
+        <div class="time-slot"><span class="number" id="sMins">০০</span><span class="label">মিনিট</span></div>
+        <div class="time-slot"><span class="number" id="sSecs">০০</span><span class="label">সেকেন্ড</span></div>
+      </div>
+    </div>
+
+    <!-- Image 2 -->
+    <div class="photo-card">
+      <img src="bp.jpg" alt="প্যান্ডেল" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&auto=format&fit=crop';">
+      <div class="caption">প্যান্ডেলে প্যান্ডেলে জনসমুদ্র আর আলোর জাদুকরী রোশনাই</div>
+    </div>
+
+    <!-- Timer 2: Dashami -->
+    <div class="timer-card">
+      <h2>বিজয়ার টেনশন? মন খারাপ কিসের, এখনও বাকি :-</h2>
+      <div class="subtitle">দশমী অবধি টাইমার: ২১শে অক্টোবর ২০২৬, দুপুর ০১:০০ PM (০০:০০:০০)</div>
+      <div class="countdown-grid">
+        <div class="time-slot"><span class="number" id="dDays">০০</span><span class="label">দিন</span></div>
+        <div class="time-slot"><span class="number" id="dHours">০০</span><span class="label">ঘণ্টা</span></div>
+        <div class="time-slot"><span class="number" id="dMins">০০</span><span class="label">মিনিট</span></div>
+        <div class="time-slot"><span class="number" id="dSecs">০০</span><span class="label">সেকেন্ড</span></div>
+      </div>
+    </div>
+
+    <!-- Top 20 Pandals -->
+    <section class="pandal-section">
+      <h2>পশ্চিমবঙ্গের সেরা ২০টি দুর্গাপূজা</h2>
+      <input type="text" id="searchInput" class="search-box" placeholder="প্যান্ডেল বা এলাকা সার্চ করুন...">
+      <div class="pandal-list" id="pandalList"></div>
+    </section>
+
+    <!-- Comments Board -->
+    <section class="comments-section" id="commentArea">
+      <h2>দর্শকদের মন্তব্য খাতা</h2>
+      <div class="comment-inputs">
+        <input type="text" id="cAuthor" placeholder="আপনার নাম">
+        <textarea id="cText" rows="2" placeholder="পুজো নিয়ে মনের কথা লিখুন..."></textarea>
+        <button class="comment-btn" id="postBtn">মন্তব্য করুন</button>
+      </div>
+      <div class="comments-list" id="commentsWrapper"></div>
+    </section>
+  </div>
+
+  <!-- Floating Bar -->
+  <div class="floating-bar">
+    <button class="float-btn" id="dhakToggle">🥁 ঢাকের আওয়াজ</button>
+    <a href="#commentArea" class="float-btn">✍️ মন্তব্য</a>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="dhakModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeDhakModal">&times;</button>
+      <h3 style="color:var(--gold); font-family:'Galada', cursive; margin-bottom:6px;">বলো দুর্গা মাঈ কি — জয়!</h3>
+      <img src="bpo.jpg" alt="ঢাকের বাদ্যি" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&auto=format&fit=crop';">
+      <p style="font-size:1rem; color:#fff3c4;">তাং তা কুড় কুড় তাং ধিং তাং... ঢাক বাজছে!</p>
+    </div>
+  </div>
+
+  <audio id="dhakAudio" src="dhak.mp3" loop preload="none"></audio>
+
+  <script>
+    const bnNums = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    function toBn(n) {
+      return String(n).padStart(2, '0').split('').map(d => bnNums[d] || d).join('');
+    }
+
+    const sasthiDate = new Date(2026, 9, 16, 0, 0, 0).getTime();
+    const dashamiDate = new Date(2026, 9, 21, 13, 0, 0).getTime();
+
+    function updateTimers() {
+      const now = new Date().getTime();
+      
+      const sDiff = sasthiDate - now;
+      if (sDiff > 0) {
+        document.getElementById('sDays').textContent = toBn(Math.floor(sDiff / 86400000));
+        document.getElementById('sHours').textContent = toBn(Math.floor((sDiff % 86400000) / 3600000));
+        document.getElementById('sMins').textContent = toBn(Math.floor((sDiff % 3600000) / 60000));
+        document.getElementById('sSecs').textContent = toBn(Math.floor((sDiff % 60000) / 1000));
+      } else {
+        document.getElementById('sDays').textContent = '০০';
+        document.getElementById('sHours').textContent = '০০';
+        document.getElementById('sMins').textContent = '০০';
+        document.getElementById('sSecs').textContent = '০০';
+      }
+
+      const dDiff = dashamiDate - now;
+      if (dDiff > 0) {
+        document.getElementById('dDays').textContent = toBn(Math.floor(dDiff / 86400000));
+        document.getElementById('dHours').textContent = toBn(Math.floor((dDiff % 86400000) / 3600000));
+        document.getElementById('dMins').textContent = toBn(Math.floor((dDiff % 3600000) / 60000));
+        document.getElementById('dSecs').textContent = toBn(Math.floor((dDiff % 60000) / 1000));
+      } else {
+        document.getElementById('dDays').textContent = '০০';
+        document.getElementById('dHours').textContent = '০০';
+        document.getElementById('dMins').textContent = '০০';
+        document.getElementById('dSecs').textContent = '০০';
+      }
+    }
+    setInterval(updateTimers, 1000);
+    updateTimers();
+
+    const pandals = [
+      { name: "১. বাগবাজার সর্বজনীন", desc: "শতবর্ষের ঐতিহ্য ও সাবেক একচালার ডাকের সাজ।", loc: "উত্তর কলকাতা" },
+      { name: "২. কুমারটুলি পার্ক", desc: "শিল্পী ও মৃৎশিল্পীদের অনন্য সৃষ্টিশীল থিম।", loc: "উত্তর কলকাতা" },
+      { name: "৩. কলেজ স্কয়ার", desc: "জলের ওপর আলোর রোশনাই ও সুবিশাল স্থাপত্য।", loc: "মধ্য কলকাতা" },
+      { name: "৪. মহম্মদ আলি পার্ক", desc: "ঐতিহাসিক প্রাসাদ ও দুর্গের আদলে তৈরি মণ্ডপ।", loc: "মধ্য কলকাতা" },
+      { name: "৫. সন্তোষ মিত্র স্কয়ার", desc: "বিশ্বখ্যাত স্থাপত্যের অনুকরণ ও আধুনিক লাইটিং।", loc: "মধ্য কলকাতা" },
+      { name: "৬. শ্রীভূমি স্পোর্টিং ক্লাব", desc: "সোনার গয়না ও আন্তর্জাতিক স্থাপত্যের রাজপ্রাসাদ।", loc: "লেকটাউন" },
+      { name: "৭. সুরুচি সংঘ", desc: "ভারতের বৈচিত্র্যময় সংস্কৃতি ও নিখুঁত কারুশিল্প।", loc: "নিউ আলিপুর" },
+      { name: "৮. একডালিয়া এভারগ্রিন", desc: "বিশাল রাজকীয় ঝাড়বাতি ও সাবেকি প্রতিমা।", loc: "গড়িয়াহাট" },
+      { name: "৯. সিংহী পার্ক", desc: "সাবেকি সৌন্দর্য ও ঐতিহ্যবাহী পরিবেশ।", loc: "দক্ষিণ কলকাতা" },
+      { name: "১০. মুদিয়ালি ক্লাব", desc: "প্রকৃতি, পরিবেশ ও সাবেকিয়ানার শৈল্পিক রূপ।", loc: "দক্ষিণ কলকাতা" },
+      { name: "১১. শিব মন্দির", desc: "গ্রামবাংলার মাটির টান ও লোকশিল্পের প্রকাশ।", loc: "দক্ষিণ কলকাতা" },
+      { name: "১২. নাকতলা উদয়ন সংঘ", desc: "সমসাময়িক ভাবনার আধুনিক শিল্পকলার পুজো।", loc: "দক্ষিণ কলকাতা" },
+      { name: "১৩. বাবুবাগান সর্বজনীন", desc: "ঐতিহ্যমণ্ডিত স্থাপত্য নিয়ে তৈরি অনবদ্য মণ্ডপ।", loc: "ঢাকুরিয়া" },
+      { name: "১৪. যোধপুর পার্ক", desc: "পরিবেশবান্ধব ও অভিনব উপাদানে গড়ে ওঠা থিম।", loc: "দক্ষিণ কলকাতা" },
+      { name: "১৫. চেতলা অগ্রণী", desc: "বাংলার শিকড় ও আবহমান সংস্কৃতির নিদর্শন।", loc: "দক্ষিণ কলকাতা" },
+      { name: "১৬. কল্যাণী আইটিআই মোড়", desc: "অতিকায় মন্দির ও আলোর মায়াবী জগৎ।", loc: "নদিয়া" },
+      { name: "১৭. চন্দননগর স্ট্র্যান্ড রোড", desc: "আলোর জাদুকরী কেরামতি ও প্রাচীন ঐতিহ্য।", loc: "হুগলি" },
+      { name: "১৮. বর্ধমান সর্বজনীন", desc: "ঐতিহাসিক বর্ধমান শহরের সেরা থিম ও জনজোয়ার।", loc: "পূর্ব বর্ধমান" },
+      { name: "১৯. শিলিগুড়ি সুব্রত সংঘ", desc: "উত্তরবঙ্গের সেরা আলো ও নজরকাড়া মণ্ডপ।", loc: "শিলিগুড়ি" },
+      { name: "২০. মেদিনীপুর বটতলা", desc: "প্রাচীন ঐতিহাসিক পরম্পরা ও গ্রামীণ কারুশিল্প।", loc: "পশ্চিম মেদিনীপুর" }
+    ];
+
+    const pList = document.getElementById('pandalList');
+    function renderP(f = '') {
+      pList.innerHTML = '';
+      pandals.filter(p => p.name.includes(f) || p.desc.includes(f) || p.loc.includes(f)).forEach(p => {
+        pList.innerHTML += `<div class="pandal-item"><div class="pandal-title">${p.name}</div><div class="pandal-desc">${p.desc}</div><div class="pandal-loc">📍 ${p.loc}</div></div>`;
+      });
+    }
+    renderP();
+    document.getElementById('searchInput').addEventListener('input', e => renderP(e.target.value.trim()));
+
+    const aud = document.getElementById('dhakAudio');
+    const mdl = document.getElementById('dhakModal');
+    let playing = false;
+
+    document.getElementById('dhakToggle').addEventListener('click', () => {
+      if (!playing) {
+        aud.play().catch(() => {});
+        mdl.classList.add('active');
+        playing = true;
+      } else {
+        aud.pause();
+        mdl.classList.remove('active');
+        playing = false;
+      }
+    });
+
+    document.getElementById('closeDhakModal').addEventListener('click', () => mdl.classList.remove('active'));
+
+    let cmts = JSON.parse(localStorage.getItem('puja_comments') || '[]');
+    if (!cmts.length) {
+      cmts = [{ id: 1, author: "অভিজিৎ", text: "ষষ্ঠীর আর বেশি দেরি নেই! মহাষষ্ঠী থেকে দশমী জমিয়ে মজা হবে!", likes: 10, pinned: true }];
+    }
+    const cWrap = document.getElementById('commentsWrapper');
+
+    function drawC() {
+      localStorage.setItem('puja_comments', JSON.stringify(cmts));
+      cWrap.innerHTML = '';
+      [...cmts].sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0)).forEach(c => {
+        cWrap.innerHTML += `
+          <div class="single-comment ${c.pinned?'pinned':''}">
+            <div class="comment-head">${c.author} ${c.pinned?'📌':''}</div>
+            <div>${c.text}</div>
+            <div class="comment-actions">
+              <button class="action-btn" onclick="lk(${c.id})">❤️ ${c.likes}</button>
+              <button class="action-btn" onclick="ed(${c.id})">✏️ এডিট</button>
+              <button class="action-btn" onclick="pn(${c.id})">📌 পিন</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    document.getElementById('postBtn').addEventListener('click', () => {
+      const a = document.getElementById('cAuthor').value.trim() || 'দর্শনার্থী';
+      const t = document.getElementById('cText').value.trim();
+      if (!t) return;
+      cmts.push({ id: Date.now(), author: a, text: t, likes: 0, pinned: false });
+      document.getElementById('cText').value = '';
+      drawC();
+    });
+
+    window.lk = id => { const c = cmts.find(x=>x.id===id); if(c){ c.likes++; drawC(); } };
+    window.ed = id => { const c = cmts.find(x=>x.id===id); if(c){ const u = prompt("মন্তব্য সংশোধন করুন:", c.text); if(u){ c.text = u.trim(); drawC(); } } };
+    window.pn = id => { const c = cmts.find(x=>x.id===id); if(c){ c.pinned = !c.pinned; drawC(); } };
+    drawC();
+  </script>
+</body>
+</html>
